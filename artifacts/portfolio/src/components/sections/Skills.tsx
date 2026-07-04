@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { SiReact, SiRedux, SiFlutter, SiTypescript, SiTailwindcss, SiMui, SiNodedotjs, SiPython, SiPhp, SiCplusplus, SiPostgresql, SiMongodb, SiFigma, SiDjango, SiDocker, SiKubernetes, SiTerraform, SiGrafana, SiGithub, SiJenkins } from "react-icons/si";
 import { DiPhotoshop } from "react-icons/di";
 
@@ -57,7 +57,7 @@ export default function Skills() {
    
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -67,7 +67,7 @@ export default function Skills() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants =  {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
