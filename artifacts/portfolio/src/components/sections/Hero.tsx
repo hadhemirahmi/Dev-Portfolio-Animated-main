@@ -75,6 +75,7 @@ export default function Hero() {
 
           {/* Interactive CTAs */}
           <div className="flex flex-wrap items-center gap-4 mt-2">
+            
             <button 
               onClick={() => {
                 document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
