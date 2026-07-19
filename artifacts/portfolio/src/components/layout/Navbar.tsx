@@ -55,17 +55,19 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-        isScrolled ? "bg-background/80 backdrop-blur-md border-white/10 py-3 shadow-lg" : "bg-transparent py-5"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+        isScrolled 
+          ? "bg-slate-950/60 backdrop-blur-xl border-white/5 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.3)]" 
+          : "bg-transparent border-transparent py-5"
       )}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <a 
           href="#home" 
           onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
-          className="text-xl font-display font-bold tracking-tighter text-foreground group"
+          className="text-2xl font-display font-bold tracking-tighter text-foreground group"
         >
-          &lt;HR <span className="text-primary group-hover:animate-pulse">/</span>&gt;
+          &lt;HR <span className="text-primary group-hover:text-accent transition-colors duration-300">/</span>&gt;
         </a>
 
         {/* Desktop Nav */}
@@ -77,22 +79,22 @@ export default function Navbar() {
               onClick={(e) => { e.preventDefault(); scrollTo(item.href); }}
               className={cn(
                 "text-sm font-mono transition-colors relative py-1",
-                activeSection === item.href.substring(1) ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                activeSection === item.href.substring(1) ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
               )}
             >
               {item.label}
               {activeSection === item.href.substring(1) && (
                 <motion.div
                   layoutId="navbar-indicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary to-accent rounded-full shadow-[0_0_8px_rgba(170,100,255,0.5)]"
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 />
               )}
             </a>
           ))}
           <button 
             onClick={() => scrollTo("#contact")}
-            className="ml-4 px-4 py-2 text-sm font-mono font-medium text-background bg-primary hover:bg-primary/90 rounded-md transition-all hover:glow-effect"
+            className="ml-4 px-5 py-2 text-sm font-mono font-bold text-foreground bg-primary/20 hover:bg-primary text-slate-950 rounded-lg border border-primary/30 hover:border-primary transition-all duration-300 hover:scale-105 active:scale-95 hover:glow-effect flex items-center gap-2 cursor-pointer"
           >
             Hire Me
           </button>

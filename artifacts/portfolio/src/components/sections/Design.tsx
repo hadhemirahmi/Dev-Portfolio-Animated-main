@@ -21,7 +21,10 @@ const designs = [
 
 export default function Design() {
   return (
-    <section id="design" className="py-24 relative bg-background/90">
+    <section id="design" className="py-24 relative bg-slate-950/40">
+      {/* Background decoration */}
+      <div className="absolute bottom-10 right-10 w-[250px] h-[250px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,13 +32,15 @@ export default function Design() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Design <span className="text-primary">Créatif</span></h2>
+          <span className="text-xs font-mono text-primary uppercase tracking-widest">Maquette & Ergonomie</span>
+          <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4 mt-2">Design <span className="text-gradient">Créatif</span></h2>
           <p className="text-muted-foreground font-mono text-sm max-w-2xl mx-auto">
             Des projets de design pensés pour l'expérience utilisateur, l'identité visuelle et l'efficacité des interfaces.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        {/* Adjusted grid for exactly 2 designs to avoid layout holes */}
+        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
           {designs.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -44,23 +49,33 @@ export default function Design() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group rounded-3xl border border-white/10 bg-card/60 p-8 shadow-xl shadow-black/5 transition-all hover:-translate-y-2 hover:border-primary/30"
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                className="group rounded-3xl border border-white/5 bg-slate-900/35 backdrop-blur-xl p-8 shadow-2xl shadow-black/20 transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 flex flex-col justify-between"
               >
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
-                  <Icon size={28} />
+                <div>
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="text-2xl font-display font-bold mb-3 group-hover:text-primary transition-colors duration-300">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 font-sans">{item.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {item.tags.map((tag) => (
+                      <span key={tag} className="text-xs font-mono px-3 py-1.5 rounded-full bg-white/5 text-muted-foreground border border-white/5">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-display font-semibold mb-4">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">{item.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {item.tags.map((tag) => (
-                    <span key={tag} className="text-xs font-mono px-3 py-2 rounded-full bg-white/5 text-muted-foreground border border-white/5">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                
                 {item.image && (
-                  <img src={item.image} alt={item.title} className="mt-4 w-full rounded-lg border border-white/5 object-cover" />
+                  <div className="overflow-hidden rounded-2xl border border-white/5 shadow-inner">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-full object-cover aspect-video transform group-hover:scale-[1.03] transition-transform duration-700 ease-out" 
+                    />
+                  </div>
                 )}
               </motion.article>
             );

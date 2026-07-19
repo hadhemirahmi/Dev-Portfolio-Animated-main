@@ -41,61 +41,82 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative border-t border-white/5 bg-background">
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="contact" className="py-24 relative border-t border-white/5 bg-slate-950/20">
+      {/* Background ambient light */}
+      <div className="absolute top-[30%] left-[20%] w-[350px] h-[350px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+      
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid md:grid-cols-2 gap-16">
+          
+          {/* Left Info Columns */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 flex flex-col justify-center"
           >
             <div>
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Discutons <span className="text-primary">Ensemble</span></h2>
-              <p className="text-muted-foreground text-lg">
-                Je suis actuellement disponible pour de nouvelles opportunités de travail ou des projets collaboratifs. N'hésitez pas à me contacter !
+              <span className="text-xs font-mono text-primary uppercase tracking-widest">Prendre Contact</span>
+              <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4 mt-2">Discutons <span className="text-gradient">Ensemble</span></h2>
+              <p className="text-muted-foreground text-lg leading-relaxed font-sans">
+                Je suis actuellement disponible pour de nouvelles opportunités de travail ou des projets collaboratifs. N'hésitez pas à m'envoyer un message !
               </p>
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-primary">
-                  <Mail size={20} />
+              {[
+                { 
+                  label: "Email", 
+                  value: "hadhemi93742594@gmail.com", 
+                  href: "mailto:hadhemi93742594@gmail.com", 
+                  icon: <Mail size={20} /> 
+                },
+                { 
+                  label: "Téléphone", 
+                  value: "+216 44 338 426", 
+                  href: "tel:+21644338426", 
+                  icon: <Phone size={20} /> 
+                },
+                { 
+                  label: "Adresse", 
+                  value: "Sfax, Tunisie (Route de l'aéroport, km 8)", 
+                  href: null, 
+                  icon: <MapPin size={20} /> 
+                }
+              ].map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-slate-900/35 backdrop-blur-xl border border-white/5 hover:border-primary/20 hover:bg-slate-900/50 hover:shadow-lg transition-all duration-300 group cursor-default"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-slate-950 border border-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-slate-950 group-hover:scale-105 transition-all duration-300">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <div className="text-xs font-mono text-muted-foreground mb-0.5">{item.label}</div>
+                    {item.href ? (
+                      <a href={item.href} className="text-lg font-semibold hover:text-primary transition-colors duration-300 font-sans">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span className="text-lg font-semibold font-sans text-foreground/90">
+                        {item.value}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <div className="text-sm font-mono text-primary mb-1">Email</div>
-                  <a href="mailto:hadhemi93742594@gmail.com" className="text-lg">hadhemi93742594@gmail.com</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-primary">
-                  <Phone size={20} />
-                </div>
-                <div>
-                  <div className="text-sm font-mono text-primary mb-1">Téléphone</div>
-                  <a href="tel:+21644338426" className="text-lg">+216 44 338 426</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-primary">
-                  <MapPin size={20} />
-                </div>
-                <div>
-                  <div className="text-sm font-mono text-primary mb-1">Adresse</div>
-                  <span className="text-lg">Sfax, Tunisie (Route de l'aéroport, km 8)</span>
-                </div>
-              </div>
+              ))}
             </div>
           </motion.div>
 
+          {/* Right Form Card */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-card/50 p-8 rounded-2xl border border-white/10 relative overflow-hidden"
+            className="bg-slate-900/35 backdrop-blur-xl p-8 rounded-3xl border border-white/5 relative overflow-hidden shadow-2xl shadow-black/30"
           >
             {/* Subtle glow behind form */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/5 blur-[120px] pointer-events-none" />
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
@@ -106,7 +127,11 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel className="text-muted-foreground font-mono text-xs uppercase tracking-wider">Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" {...field} className="bg-background/50 border-white/10 focus:border-primary/50 focus:ring-primary/20" />
+                        <Input 
+                          placeholder="John Doe" 
+                          {...field} 
+                          className="bg-slate-950/40 border-white/5 focus-visible:ring-primary/45 focus-visible:border-primary/50 text-foreground transition-all duration-300 rounded-xl py-5" 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -119,7 +144,11 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel className="text-muted-foreground font-mono text-xs uppercase tracking-wider">Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="john@example.com" {...field} className="bg-background/50 border-white/10 focus:border-primary/50 focus:ring-primary/20" />
+                        <Input 
+                          placeholder="john@example.com" 
+                          {...field} 
+                          className="bg-slate-950/40 border-white/5 focus-visible:ring-primary/45 focus-visible:border-primary/50 text-foreground transition-all duration-300 rounded-xl py-5" 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -134,7 +163,7 @@ export default function Contact() {
                       <FormControl>
                         <Textarea 
                           placeholder="Tell me about your project..." 
-                          className="min-h-[120px] bg-background/50 border-white/10 focus:border-primary/50 focus:ring-primary/20 resize-none" 
+                          className="min-h-[120px] bg-slate-950/40 border-white/5 focus-visible:ring-primary/45 focus-visible:border-primary/50 text-foreground transition-all duration-300 rounded-xl resize-none" 
                           {...field} 
                         />
                       </FormControl>
@@ -145,14 +174,14 @@ export default function Contact() {
                 <Button 
                   type="submit" 
                   disabled={isSubmitting || isSuccess}
-                  className="w-full bg-primary text-background hover:bg-primary/90 font-mono font-bold py-6 hover:glow-effect transition-all"
+                  className="w-full bg-gradient-to-r from-primary to-accent text-slate-950 font-mono font-bold py-6 hover:glow-effect-accent transition-all duration-300 rounded-xl hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
                   {isSuccess ? (
-                    <span className="flex items-center gap-2"><CheckCircle2 size={18} /> Sent Successfully</span>
+                    <span className="flex items-center gap-2 text-slate-950"><CheckCircle2 size={18} /> Sent Successfully</span>
                   ) : isSubmitting ? (
-                    <span className="flex items-center gap-2">Sending...</span>
+                    <span className="flex items-center gap-2 text-slate-950">Sending...</span>
                   ) : (
-                    <span className="flex items-center gap-2">Send Message <Send size={18} /></span>
+                    <span className="flex items-center gap-2 text-slate-950">Send Message <Send size={18} /></span>
                   )}
                 </Button>
               </form>

@@ -77,20 +77,22 @@ export default function Skills() {
   } as const;
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
-      {/* Decorative slant */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+    <section id="skills" className="py-24 relative overflow-hidden bg-slate-950/20">
+      {/* Decorative slant & blur glow */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/55 to-transparent" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
       
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Technical <span className="text-primary">Arsenal</span></h2>
+          <span className="text-xs font-mono text-primary uppercase tracking-widest">Compétences Techniques</span>
+          <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4 mt-2">Technical <span className="text-gradient">Arsenal</span></h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-mono text-sm">
-            Tools and technologies I use to build robust applications. Always learning, always adapting.
+            Outils et technologies que j'utilise pour concevoir des applications performantes.
           </p>
         </motion.div>
 
@@ -102,10 +104,10 @@ export default function Skills() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
-              className="bg-card/50 border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-colors"
+              className="bg-slate-900/35 backdrop-blur-xl border border-white/5 rounded-3xl p-6 hover:border-primary/20 hover:bg-slate-900/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 transform"
             >
-              <h3 className="text-xl font-display font-semibold mb-6 border-b border-white/5 pb-4">
-                <span className="text-primary mr-2 font-mono text-sm">{`0${idx + 1}.`}</span>
+              <h3 className="text-xl font-display font-bold mb-6 border-b border-white/5 pb-4 text-foreground flex items-center">
+                <span className="text-primary mr-2.5 font-mono text-sm">{`0${idx + 1}.`}</span>
                 {category.title}
               </h3>
               
@@ -116,21 +118,21 @@ export default function Skills() {
                     variants={itemVariants}
                     className="group relative"
                   >
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-transparent hover:border-white/10 hover:bg-white/10 transition-all cursor-default">
+                    <div className="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.02] border border-transparent hover:border-white/10 hover:bg-white/[0.06] transition-all duration-300 cursor-default">
                       <div className="flex items-center gap-3">
-                        <skill.icon size={20} style={{ color: skill.color }} className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
-                        <span className="font-medium text-sm">{skill.name}</span>
+                        <skill.icon size={22} style={{ color: skill.color }} className="opacity-80 group-hover:opacity-100 group-hover:scale-115 transition-all duration-300" />
+                        <span className="font-semibold text-sm group-hover:text-primary transition-colors duration-300 font-sans">{skill.name}</span>
                       </div>
                       
-                      {/* Fake proficiency bar for visual interest */}
-                      <div className="w-24 h-1.5 bg-background rounded-full overflow-hidden">
+                      {/* Fake proficiency bar with better border details */}
+                      <div className="w-24 h-2 bg-slate-950 rounded-full border border-white/5 overflow-hidden">
                         <motion.div 
                           className="h-full rounded-full"
                           style={{ backgroundColor: skill.color }}
                           initial={{ width: 0 }}
-                          whileInView={{ width: `${70 + Math.random() * 30}%` }}
+                          whileInView={{ width: `${70 + Math.random() * 25}%` }}
                           viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 0.2 }}
+                          transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
                         />
                       </div>
                     </div>

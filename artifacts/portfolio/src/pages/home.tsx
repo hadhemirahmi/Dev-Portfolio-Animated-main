@@ -7,21 +7,26 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
+import BackgroundEffects from "@/components/sections/BackgroundEffects";
 
 export default function Home() {
   useEffect(() => {
-    // Light mode
-    document.documentElement.classList.remove("dark");
+    // Force dark mode
+    document.documentElement.classList.add("dark");
   }, []);
 
   return (
     <div className="bg-background min-h-screen text-foreground selection:bg-primary/30 selection:text-primary relative overflow-hidden">
+      {/* Interactive Particle canvas */}
+      <BackgroundEffects />
+
       {/* Background grid */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-grid-pattern [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] opacity-20" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-grid-pattern [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] opacity-40" />
       
-      {/* Dynamic ambient glow */}
-      <div className="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[120px] z-0 pointer-events-none" />
-      <div className="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px] z-0 pointer-events-none" />
+      {/* Dynamic ambient glow spots matching teal/purple theme */}
+      <div className="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/15 blur-[150px] z-0 pointer-events-none" />
+      <div className="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-accent/15 blur-[150px] z-0 pointer-events-none" />
+      <div className="fixed top-[40%] left-[60%] w-[35%] h-[35%] rounded-full bg-indigo-500/5 blur-[130px] z-0 pointer-events-none" />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
